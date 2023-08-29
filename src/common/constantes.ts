@@ -2,14 +2,6 @@ export enum RabbitMQ {
   CentrosVotacionQueue = 'centro_votacion',
 }
 
-export enum PartidosPoliticosMSG {
-  CREATE = 'CREATE_PARTIDO_POLITICO',
-  UPDATE = 'UPDATE_PARTIDO_POLITICO',
-  DELETE = 'DELETE_PARTIDO_POLITICO',
-  FIND_ALL = 'FIND_PARTIDOS_POLITICOS',
-  FIND_ONE = 'FIND__PARTIDO_POLITICO',
-  CHANGE_LOGO = 'CHANGE_LOGO_PARTIDO_POLITICO',
-}
 
 export enum CentrosVotacionMSG {
   CREATE = 'CREATE_CENTRO_VOTACION',
@@ -19,8 +11,4 @@ export enum CentrosVotacionMSG {
   FIND_ONE = 'FIND_CENTRO_VOTACION',
   SET_STATUS = 'SET_STATUS',
   SET_JRV = 'SET_JRV',
-}
-
-export enum Folders {
-  partidosPoliticos = 'partidos-politicos',
 }
