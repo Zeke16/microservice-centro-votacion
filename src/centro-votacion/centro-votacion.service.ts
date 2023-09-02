@@ -75,13 +75,4 @@ export class CentroVotacionService {
       },
     });
   }
-
-  async setJrv(id: number, idJrv: number): Promise<jrv_centro_votacion> {
-    return await this.model.jrv_centro_votacion.create({
-      data: {
-        id_centro_votacion: id,
-        id_jrv: idJrv,
-      },
-    });
-  }
 }

@@ -39,11 +39,4 @@ export class CentroVotacionController {
 
     return this.centroVotacionService.changeStatus(id, estado);
   }
-
-  @MessagePattern(CentrosVotacionMSG.SET_JRV)
-  async setJrv(@Payload() payload: any) {
-    const { id, idJrv } = payload;
-
-    return this.centroVotacionService.setJrv(id, idJrv);
-  }
 }
