@@ -1,11 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  $Enums,
-  EstadoJrv,
-  Prisma,
-  centros_votacion,
-  jrv_centro_votacion,
-} from '@prisma/client';
+import { $Enums, EstadoJrv, Prisma, centros_votacion } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
@@ -24,12 +18,20 @@ export class CentroVotacionService {
     return await this.model.centros_votacion.findMany({
       select: {
         id_centro_votacion: true,
-        id_municipio: true,
         nombre: true,
+        id_municipio: true,
         direccion: true,
         estado: true,
         creado_en: true,
-        modificado: true,
+        modificado_en: true,
+        junta_receptora_votos: true,
+        municipios: {
+          select: {
+            id_municipio: true,
+            nombre: true,
+            departamentos: true,
+          },
+        },
       },
     });
   }

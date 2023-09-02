@@ -64,7 +64,6 @@ model personas_naturales {
   fecha_nacimiento       DateTime
   fecha_vencidmiento_dui DateTime
   creado_en              DateTime @default(now())
-  modificado_en          DateTime @updatedAt
 
   municipio            municipios             @relation(fields: [id_municipio], references: [id_municipio])
   candidatos_politicos candidatos_politicos[]
@@ -94,7 +93,7 @@ model roles {
   nombre     String   @unique @db.VarChar(150)
   estado     Boolean  @default(true)
   creado_en  DateTime @default(now())
-  modificado DateTime @updatedAt
+  modificado_en DateTime @updatedAt
 }
 
 model usuarios {
@@ -115,32 +114,23 @@ model centros_votacion {
   direccion          String    @db.Text
   estado             EstadoJrv @default(CERRADA)
   creado_en          DateTime  @default(now())
-  modificado         DateTime  @updatedAt
+  modificado_en         DateTime  @updatedAt
 
-  municipios          municipios            @relation(fields: [id_municipio], references: [id_municipio])
-  jrv_centro_votacion jrv_centro_votacion[]
+  municipios            municipios              @relation(fields: [id_municipio], references: [id_municipio])
+  junta_receptora_votos junta_receptora_votos[]
 }
 
 model junta_receptora_votos {
-  id_jrv     Int       @id @default(autoincrement())
-  codigo     String    @db.VarChar(10)
-  estado     EstadoJrv @default(CERRADA)
-  creado_en  DateTime  @default(now())
-  modificado DateTime  @updatedAt
-
-  jrv_centro_votacion jrv_centro_votacion[]
-  detalles_sufragio   detalles_sufragio[]
-  jrv_miembros        jrv_miembros[]
-}
-
-model jrv_centro_votacion {
-  id_jrv             Int      @id @default(autoincrement())
+  id_jrv             Int       @id @default(autoincrement())
+  codigo             String    @db.VarChar(10)
   id_centro_votacion Int
-  creado_en          DateTime @default(now())
-  modificado         DateTime @updatedAt
+  estado             EstadoJrv @default(CERRADA)
+  creado_en          DateTime  @default(now())
+  modificado_en         DateTime  @updatedAt
 
-  centro_votacion       centros_votacion      @relation(fields: [id_centro_votacion], references: [id_centro_votacion])
-  junta_recentora_votos junta_receptora_votos @relation(fields: [id_jrv], references: [id_jrv])
+  centro_votacion   centros_votacion    @relation(fields: [id_centro_votacion], references: [id_centro_votacion])
+  detalles_sufragio detalles_sufragio[]
+  jrv_miembros      jrv_miembros[]
 }
 
 model jrv_miembros {
@@ -150,7 +140,7 @@ model jrv_miembros {
   id_usuario         Int
   estado             Estado   @default(ACTIVO)
   creado_en          DateTime @default(now())
-  modificado         DateTime @updatedAt
+  modificado_en         DateTime @updatedAt
 
   jrv                  junta_receptora_votos @relation(fields: [id_jrv], references: [id_jrv])
   informacion_personal personas_naturales    @relation(fields: [id_persona_natural], references: [id_persona_natural])
