@@ -22,6 +22,12 @@ export class CentroVotacionController {
     return this.centroVotacionService.findOne(id);
   }
 
+  @MessagePattern(CentrosVotacionMSG.FIND_ONE_BY_NAME)
+  async findOneByName(@Payload() nombre: string) {
+    return this.centroVotacionService.findOneByName(nombre);
+  }
+
+
   @MessagePattern(CentrosVotacionMSG.UPDATE)
   async update(@Payload() payload: any) {
     const { id, centroVotacionDTO } = payload;
@@ -35,8 +41,8 @@ export class CentroVotacionController {
 
   @MessagePattern(CentrosVotacionMSG.SET_STATUS)
   async changeStatus(@Payload() payload: any) {
-    const { id, estado } = payload;
+    const { id } = payload;
 
-    return this.centroVotacionService.changeStatus(id, estado);
+    return this.centroVotacionService.changeStatus(id);
   }
 }
