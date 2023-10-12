@@ -95,10 +95,13 @@ export class CentroVotacionService {
     const countNombre = await this.model.centros_votacion.count({
       where: {
         nombre: centroVotacionDTO.nombre.toString(),
+        NOT: {
+          id_centro_votacion: id
+        }
       },
     });
 
-    if (countNombre > 1)
+    if (countNombre == 1)
       throw new HttpException(
         'Centro de votación ya posee este nombre',
         HttpStatus.NOT_FOUND,
